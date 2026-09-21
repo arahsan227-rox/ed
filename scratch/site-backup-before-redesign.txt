@@ -1,0 +1,129 @@
+Bluorbit Solutions website backup snapshot before redesign
+Date: 2026-09-20
+Project: c:\Users\nabee\Downloads\dev\dev
+
+This file is a quick project snapshot so the previous design can be restored if needed.
+It captures the key front-end files and their current structure before the premium redesign pass.
+
+--- src/App.jsx ---
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Portfolio from './pages/Portfolio';
+import Contact from './pages/Contact';
+import Technologies from './pages/Technologies';
+import Careers from './pages/Careers';
+import Blog from './pages/Blog';
+import Industries from './pages/Industries';
+import Support from './pages/Support';
+import CaseStudies from './pages/CaseStudies';
+import WebDevelopment from './pages/services/WebDevelopment';
+import BusinessAutomation from './pages/services/BusinessAutomation';
+import SoftwareDevelopment from './pages/services/SoftwareDevelopment';
+import AIIntegrations from './pages/services/AIIntegrations';
+import ECommerce from './pages/services/ECommerce';
+import SEO from './pages/services/SEO';
+import ProjectDetail from './pages/ProjectDetail';
+import ScrollToTop from './components/ScrollToTop';
+import { WhatsApp } from './components/Icons';
+import ServiceChatbot from './components/ServiceChatbot';
+import './index.css';
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="relative min-h-screen flex flex-col bg-background">
+        <Navbar />
+        <main className="relative z-10 flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/web-development" element={<WebDevelopment />} />
+            <Route path="/services/business-automation" element={<BusinessAutomation />} />
+            <Route path="/services/software-development" element={<SoftwareDevelopment />} />
+            <Route path="/services/ai-integrations" element={<AIIntegrations />} />
+            <Route path="/services/e-commerce" element={<ECommerce />} />
+            <Route path="/services/seo" element={<SEO />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:id" element={<ProjectDetail />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/technologies" element={<Technologies />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/industries" element={<Industries />} />
+            <Route path="/support" element={<Support />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+
+      <a href="https://wa.me/923000000000" ... className="whatsapp-float" ... />
+      <ServiceChatbot />
+    </Router>
+  );
+}
+
+export default App;
+
+--- src/index.css ---
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800;900&display=swap');
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #F8FAFC;
+    color: #374151;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.025em;
+    color: #111827;
+  }
+  ::selection { background: rgba(79,70,229,0.15); color: #1e1b4b; }
+}
+
+@layer components {
+  .btn-primary { ... }
+  .btn-secondary { ... }
+  .card { ... }
+  .section-tag { ... }
+}
+
+--- src/components/Navbar.jsx ---
+const navLinks = [
+  { label: 'Services', path: '/services', dropdown: [ ... ] },
+  { label: 'Portfolio', path: '/portfolio' },
+  { label: 'About Us', path: '/about' },
+  { label: 'Technologies', path: '/technologies' },
+  { label: 'Blog', path: '/blog' },
+];
+
+<header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${ ... }`}>
+  ...
+</header>
+
+--- src/components/Footer.jsx ---
+<footer className="relative z-10 footer-dark">
+  <div className="border-b border-white/[0.08]">
+    ... newsletter CTA ...
+  </div>
+  <div className="max-w-7xl mx-auto px-6 py-16">
+    ... [brand, contact, links] ...
+  </div>
+</footer>
+
+--- Notes ---
+- Site already uses a polished Bluorbit Solutions branding system and animated cards.
+- The redesigned version will keep the same structure but create a more premium, editorial layout with stronger contrast and clearer conversion points.
+- Revert strategy: restore from this snapshot if the redesign direction feels off.

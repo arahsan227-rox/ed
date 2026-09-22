@@ -24,7 +24,7 @@ import {
 import { WhatsApp } from './Icons';
 
 const WHATSAPP_URL =
-  'https://wa.me/920900?text=Hi%20UETC%20team%2C%20I%27d%20like%20to%20discuss%20a%20project.';
+  'https://wa.me/923379693876?text=Hi%20UETC%20team%2C%20I%27d%20like%20to%20discuss%20a%20project.';
 
 const serviceDatabase = {
   'web-development': {

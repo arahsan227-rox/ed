@@ -68,20 +68,7 @@ const Footer = () => {
               We help businesses automate operations, build powerful software, and create modern web experiences that drive growth.
             </p>
             {/* Contact Info */}
-            <div className="space-y-3 mb-6">
-              <a href="tel:+923000000000" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-indigo-500/15 transition-colors">
-                  <Phone className="w-3.5 h-3.5" />
-                </div>
-                +92 300 000 0000
-              </a>
-              <div className="flex items-center gap-2.5 text-sm text-slate-400">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
-                  <MapPin className="w-3.5 h-3.5" />
-                </div>
-                Pakistan & Remote Worldwide
-              </div>
-            </div>
+           
             {/* Social Links */}
             <div className="flex gap-2">
               {[

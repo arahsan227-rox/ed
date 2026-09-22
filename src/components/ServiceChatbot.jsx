@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
@@ -24,7 +24,7 @@ import {
 import { WhatsApp } from './Icons';
 
 const WHATSAPP_URL =
-  'https://wa.me/923379693876?text=Hi%20UETC%20team%2C%20I%27d%20like%20to%20discuss%20a%20project.';
+  'https://wa.me/920900?text=Hi%20UETC%20team%2C%20I%27d%20like%20to%20discuss%20a%20project.';
 
 const serviceDatabase = {
   'web-development': {
@@ -310,6 +310,7 @@ export default function ServiceChatbot() {
   const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [messages, setMessages] = useState([initialMessage]);
   const [isTyping, setIsTyping] = useState(false);
+  const location = useLocation();
 
   const messagesContainerRef = useRef(null);
   const responseRef = useRef(null);
@@ -366,7 +367,13 @@ export default function ServiceChatbot() {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [open]);
+  }, [open, activeView]);
+
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
   const addUserMessage = (content) => {
     setMessages((prev) => [
@@ -458,6 +465,11 @@ export default function ServiceChatbot() {
     );
   };
 
+  const handleExplore = () => {
+    // Hide the assistant before the destination route starts rendering.
+    setOpen(false);
+  };
+
   const resetChat = () => {
     setMessages([
       {
@@ -478,125 +490,6 @@ export default function ServiceChatbot() {
         behavior: 'smooth',
       });
     });
-  };
-
-  const processQuery = (rawValue) => {
-    const query = rawValue.toLowerCase().trim();
-
-    const matchedService = Object.entries(serviceDatabase).find(
-      ([key, service]) => {
-        const aliases = [
-          key,
-          service.name.toLowerCase(),
-          service.shortName.toLowerCase(),
-        ];
-
-        return aliases.some((alias) => query.includes(alias));
-      }
-    );
-
-    if (matchedService) {
-      const [serviceId, service] = matchedService;
-
-      setSelectedServiceId(serviceId);
-
-      addAssistantMessage(
-        `I found the closest match: ${service.name}. I’ll show you the architecture, deliverables, technology stack, timeline, and typical fit.`,
-        () => {
-          setActiveView('service-detail');
-
-          setTimeout(() => {
-            scrollToResponse();
-          }, 50);
-        }
-      );
-
-      return;
-    }
-
-    if (
-      query.includes('ai') ||
-      query.includes('artificial intelligence') ||
-      query.includes('chatbot') ||
-      query.includes('llm')
-    ) {
-      const serviceId = 'ai-integrations';
-
-      setSelectedServiceId(serviceId);
-
-      addAssistantMessage(
-        'Yes — AI is one of our core capabilities. We build production-oriented AI integrations rather than isolated demos. Here’s what that service includes.',
-        () => {
-          setActiveView('service-detail');
-
-          setTimeout(() => {
-            scrollToResponse();
-          }, 50);
-        }
-      );
-
-      return;
-    }
-
-    if (
-      query.includes('process') ||
-      query.includes('workflow') ||
-      query.includes('how do you work') ||
-      query.includes('how does it work')
-    ) {
-      addAssistantMessage(
-        'Our delivery model is structured around discovery, architecture, iterative development, validation, and production deployment.',
-        () => setActiveView('process')
-      );
-
-      return;
-    }
-
-    if (
-      query.includes('price') ||
-      query.includes('pricing') ||
-      query.includes('cost') ||
-      query.includes('budget')
-    ) {
-      addAssistantMessage(
-        'Project pricing depends on scope, integrations, complexity, timeline, and ongoing support requirements. We prefer to understand the system first instead of forcing every project into the same package.',
-        () => setActiveView('booking')
-      );
-
-      return;
-    }
-
-    if (
-      query.includes('contact') ||
-      query.includes('call') ||
-      query.includes('talk') ||
-      query.includes('consult') ||
-      query.includes('engineer')
-    ) {
-      addAssistantMessage(
-        'Absolutely. You can speak directly with the team through WhatsApp or use our contact page to start a project discussion.',
-        () => setActiveView('booking')
-      );
-
-      return;
-    }
-
-    if (
-      query.includes('hello') ||
-      query.includes('hi') ||
-      query.includes('hey')
-    ) {
-      addAssistantMessage(
-        'Hi! 👋 Tell me what you’re building, or choose one of the quick options below and I’ll guide you.'
-      );
-
-      return;
-    }
-
-    addAssistantMessage(
-      'I can help you explore our services, explain our development process, discuss AI and automation, or connect you with an engineer. Try asking about a specific service or choose an option below.',
-      () => setActiveView('menu')
-    );
   };
 
   /*
@@ -1015,6 +908,7 @@ export default function ServiceChatbot() {
 
                                 <Link
                                   to={selectedService.pageLink}
+                                  onClick={handleExplore}
                                   className="flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-3 py-2.5 text-xs font-bold text-white transition hover:bg-slate-800"
                                 >
                                   Explore

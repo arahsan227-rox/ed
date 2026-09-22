@@ -191,7 +191,7 @@ export default function Support() {
   const handleQuickAction = (action) => {
     if (action === 'whatsapp') {
       window.open(
-        'https://wa.me/923379693876?text=Hi%20UETC%20team%2C%20I%20need%20support.',
+        'https://wa.me/920900?text=Hi%20UETC%20team%2C%20I%20need%20support.',
         '_blank',
         'noopener,noreferrer'
       );

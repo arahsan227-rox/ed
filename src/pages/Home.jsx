@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -33,7 +33,6 @@ import {
   Layers3,
   CircleDot,
   Plus,
-  Minus,
   MoveUpRight,
   Quote,
   Check,
@@ -44,19 +43,6 @@ import {
 ========================================================= */
 
 const ease = [0.22, 1, 0.36, 1];
-
-const reveal = {
-  hidden: {
-    opacity: 0,
-    y: 35,
-    filter: 'blur(8px)',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-  },
-};
 
 /* =========================================================
    REUSABLE REVEAL

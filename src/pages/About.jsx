@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -13,14 +13,12 @@ import {
   Globe2,
   Rocket,
   Sparkles,
-  Users,
   CheckCircle2,
-  Infinity,
+  Infinity as InfinityIcon,
   Layers3,
   BrainCircuit,
   Workflow,
   ChevronDown,
-  MousePointer2,
   CircleDot,
 } from 'lucide-react';
 
@@ -98,16 +96,6 @@ const FloatingOrb = ({
   />
 );
 
-const GlowLine = () => (
-  <motion.div
-    initial={{ scaleX: 0, opacity: 0 }}
-    whileInView={{ scaleX: 1, opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1.2, ease }}
-    className="h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent"
-  />
-);
-
 /* =========================================================
    DATA
 ========================================================= */
@@ -179,7 +167,7 @@ const journey = [
     year: '2024+',
     title: "What's Next",
     desc: 'We continue pushing toward intelligent, connected, and scalable technology that creates measurable business impact.',
-    icon: Infinity,
+    icon: InfinityIcon,
   },
 ];
 
@@ -228,46 +216,6 @@ const stats = [
 /* =========================================================
    ANIMATED NUMBER
 ========================================================= */
-
-const Counter = ({
-  target,
-  suffix = '',
-  duration = 1800,
-}) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-
-  const inView = useInView(ref, {
-    once: true,
-  });
-
-  useEffect(() => {
-    if (!inView) return;
-
-    let start = 0;
-    const increment = target / (duration / 16);
-
-    const timer = setInterval(() => {
-      start += increment;
-
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-};
 
 /* =========================================================
    ABOUT PAGE
@@ -545,7 +493,7 @@ export default function About() {
                         title: 'Grow',
                         text: 'We continuously improve the system as your business evolves.',
                       },
-                    ].map((item, index) => (
+                    ].map((item) => (
                       <motion.div
                         key={item.title}
                         whileHover={{ x: 6 }}

@@ -24,7 +24,7 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [, setOpenDropdown] = useState(null);
   const location = useLocation();
 
   useEffect(() => {

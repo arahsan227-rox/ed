@@ -536,7 +536,7 @@ HERO
 
         <FadeIn delay={0.1}>
           <div className="grid sm:grid-cols-2 gap-3">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <motion.div
                 key={service}
                 whileHover={{ x: 4 }}

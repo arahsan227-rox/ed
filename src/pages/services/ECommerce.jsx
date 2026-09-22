@@ -16,8 +16,6 @@ import {
   MousePointer2,
   TrendingUp,
   Layers3,
-  Truck,
-  RefreshCcw,
   Store,
 } from 'lucide-react';
 

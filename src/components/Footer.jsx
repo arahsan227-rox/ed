@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Code2, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Code2, ArrowRight } from 'lucide-react';
 import { Instagram, Facebook } from './Icons';
 
 const footerLinks = {

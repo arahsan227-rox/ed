@@ -62,7 +62,7 @@ const contactMethods = [
     icon: Phone,
     label: 'Phone',
     value: '+92 300 000 0000',
-    href: 'tel:+923379693876',
+    href: 'tel:+920900',
     color: 'blue',
     description: 'Speak directly with our team',
   },
@@ -70,7 +70,7 @@ const contactMethods = [
     icon: MessageCircle,
     label: 'WhatsApp',
     value: 'Chat on WhatsApp',
-    href: 'https://wa.me/923379693876',
+    href: 'https://wa.me/920900',
     color: 'emerald',
     description: 'Quick questions & discussions',
   },
@@ -559,7 +559,7 @@ export default function Contact() {
                 </div>
 
                 {/* Contact cards */}
-                {contactMethods.map((method, index) => {
+                {contactMethods.map((method) => {
                   const Icon = method.icon;
 
                   const colorStyles = {
